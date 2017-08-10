@@ -11,20 +11,22 @@ var basePath = '../client';
 
 gulp.task('less', function () {
     compileLess('admin');
-    compileLess('photohub');
+    compileLess('blog');
+    compileLess('home');    
 
     function compileLess(app) {
         return gulp.src(basePath + '/' + app + '/_content/app.less')
             .pipe(less())
-            .pipe(autoprefixer())
-            .pipe(minifyCSS())
+            //.pipe(autoprefixer())
+            //.pipe(minifyCSS())
             .pipe(gulp.dest(basePath + '/' + app + '/_dist/'));
     }
 });
 
 gulp.task('scripts', function () {
     compileScripts('admin');
-    compileScripts('photohub');
+    compileScripts('blog');
+    compileScripts('home');  
 
     function compileScripts(app) {
         // include all .js files except for a couple of folders
@@ -42,7 +44,8 @@ gulp.task('scripts', function () {
 
 gulp.task('watch', function () {
     setupWatches('admin');
-    setupWatches('photohub');
+    setupWatches('blog');
+    setupWatches('home');  
 
     function setupWatches(app) {
         gulp.watch(basePath + '/' + app + '/_content/*.less', ['less']);
